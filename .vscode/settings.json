@@ -1,0 +1,7 @@
+{
+  "python.autoComplete.extraPaths": [
+    "/home/sunfu/catkin_ws/devel/lib/python3/dist-packages",
+    "/opt/ros/noetic/lib/python3/dist-packages"
+  ],
+  "cmake.sourceDirectory": "${workspaceFolder}/msg_serialize"
+}

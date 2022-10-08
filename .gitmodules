@@ -1,0 +1,6 @@
+[submodule "nlink_parser"]
+	path = nlink_parser
+	url = git@github.com:nooploop-dev/nlink_parser.git
+[submodule "serial"]
+	path = serial
+	url = git@github.com:nooploop-dev/serial.git

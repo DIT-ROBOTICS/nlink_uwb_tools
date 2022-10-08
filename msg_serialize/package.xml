@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>msg_serialize</name>
+  <version>0.0.0</version>
+  <description>The msg_serialize package</description>
+
+  <maintainer email="sunfu.chou@gmail.com">sunfu</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>nlink_parser</depend>
+  <depend>roscpp</depend>
+
+  <export>
+  </export>
+</package>
