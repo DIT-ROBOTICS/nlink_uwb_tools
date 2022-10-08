@@ -4,3 +4,9 @@
 [submodule "serial"]
 	path = serial
 	url = git@github.com:nooploop-dev/serial.git
+[submodule "imu_calib"]
+	path = imu_calib
+	url = git@github.com:DIT-ROBOTICS/imu_calib.git
+[submodule "imu_tools"]
+	path = imu_tools
+	url = git@github.com:DIT-ROBOTICS/imu_tools.git

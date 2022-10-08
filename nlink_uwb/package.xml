@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nlink_uwb</name>
+  <version>0.0.0</version>
+  <description>The nlink_uwb package</description>
+
+  <maintainer email="sunfu.chou@gmail.com">sunfu</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>nlink_parser</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+
+  <export>
+  </export>
+</package>

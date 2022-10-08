@@ -1,0 +1,45 @@
+<launch>
+    <node pkg="nlink_parser" type="linktrack" name="uwb_data_exctractor" output="screen" clear_params="true" respawn="true" respawn_delay="1">
+        <param name="port_name" value="/dev/ttyUSB0" />
+        <param name="baud_rate" value="921600" />
+
+        <remap from="nlink_linktrack_data_transmission" to="uwb_data_tx" />
+        <remap from="nlink_linktrack_tagframe0" to="uwb_state" />
+    </node>
+
+    <node pkg="nlink_uwb" type="nlink_tagframe_converter" name="nlink_tagframe_converter" output="screen" clear_params="true">
+        <param name="framd_id" value="uwb_frame"/>
+        <param name="map_frame_id" value="map"/>
+        <param name="cutoff_freq" value="1"/>
+        <rosparam file="$(find nlink_uwb)/config/linktrack.yaml" command="load" />
+    </node>
+
+    <node pkg="imu_calib" type="apply_calib" name="apply_calib" output="screen" clear_params="true">
+        <param name="calib_file" value="$(find nlink_uwb)/config/imu_calib.yaml" />
+        <param name="calibrate_gyros" value="true" />
+        <param name="gyro_calib_samples" value="200" />
+        <remap from="raw" to="uwb_imu_raw" />
+        <remap from="corrected" to="uwb_imu_calibed" />
+    </node>
+
+    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node" output="screen" clear_params="true">
+        <param name="publish_tf" value="false" />
+        <param name="use_mag" value="false" />
+        <param name="remove_gravity_vector" value="true" />
+        <param name="publish_tf" value="false" />
+
+        <remap from="imu/data_raw" to="uwb_imu_calibed" />
+        <remap from="imu/data" to="uwb_imu" />
+    </node>
+
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true">
+        <rosparam command="load" file="$(find nlink_uwb)/config/ekf_uwb.yaml" />
+
+        <remap from="odometry/filtered" to="global_filter" />
+        <remap from="set_pose" to="initialpose" />
+    </node>
+
+    <node name="map_to_odom" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0 0 0 0 1 map odom" />
+    <node name="odom_to_base_link" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0 0 0 0 1 odom base_link" />
+    <node name="base_links_to_uwb" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0.25 0 0 0 1 base_link uwb_frame" />
+</launch>
