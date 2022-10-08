@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 catkin_package(
-  INCLUDE_DIRS include
+  INCLUDE_DIRS 
   CATKIN_DEPENDS nlink_parser roscpp
 )
 

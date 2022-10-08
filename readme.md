@@ -8,7 +8,7 @@ This repo is a collection of ros packages for LinkTrack UWB, containing the main
 
 Under `catkin_ws/src`
 
-`git clone --recursive `
+`git clone --recursive git@github.com:DIT-ROBOTICS/nlink_uwb_tools.git`
 
 ### Install
 
@@ -46,9 +46,10 @@ Add the user into dialout group to get permission permanently on most hosts.
 
 Default `linktrack.0` is working on ttyUSB0, and run the serial node and UWB node.
 
-Default `linktrack.01` is working on ttyUSB1, and run the DEserial node and UWB node.
+Default `linktrack.1` is working on ttyUSB1, and run the DEserial node and UWB node.
 
 `roslaunch msg_serialize linktrack.0.launch`
+
 `roslaunch msg_serialize linktrack.1.launch`
 
 ![bobobob](/rosgraph.png)
